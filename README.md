@@ -53,3 +53,40 @@ x := 10 // x = y = ref 10, z = 0
 ```
 
 Changes to references will go beyond the current block scope, assuming that the reference itself lives beyond that scope.
+
+###Functions
+
+Functions are defined using the `:` symbol, preceded by the function name and its arguments, with no additional qualifiers.  A simple function can be defined in one line:
+
+```
+f a b: a + b
+x = f 2 3 // x = 5
+```
+
+Alternatively a function can be defined across multiple lines, forming a block delineated by appropriate levels of indentation:
+
+```
+f a b:
+  x = 2 * a
+  y = 5 * b
+  x + y
+z = f 1 2 // z = 12, x and y are not bound outside of the function block
+```
+
+Anonymous function objects can be created using the `function` keyword and the `:` symbol:
+
+```
+adder n:
+  function m:
+    n + m
+f = adder 2
+x = f 3 // x = 5, f is a function that takes an integer and adds 2
+```
+
+Functions of no arguments are defined and called with the `()` argument:
+
+```
+f ():
+  5
+x = 5 + f () // x = 10
+```
