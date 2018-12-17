@@ -116,3 +116,14 @@ where:
   x = a * b
   y = a + b
 ```
+
+###Algebraic Data Types
+
+Algebraic data types can be defined using the `type` keyword:
+
+```
+type suit: Spade | Heart | Club | Diamond
+type card:
+  Card int suit
+  Joker
+```
