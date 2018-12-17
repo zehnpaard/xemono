@@ -90,3 +90,29 @@ f ():
   5
 x = 5 + f () // x = 10
 ```
+
+###let/where
+
+The `let` and `where` keywords create block scopes whose bindings are local to the immediately following/preceding statements:
+
+```
+x = 1
+let:
+  x = 2
+y = x
+z = x // Somewhat confusing example, x = 1, y = 2, z = 1
+
+x = y * z // x = 110, y and z are not bound beyond the where block
+where:
+  y = 10
+  z = y + 1
+```
+
+`where` can be used in conjunction with a single line function:
+
+```
+f a b: x + y
+where:
+  x = a * b
+  y = a + b
+```
