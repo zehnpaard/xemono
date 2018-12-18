@@ -212,3 +212,35 @@ recursive:
 
 Singly-recursive types do not require the `recursive` keyword, and a function definition and type definition cannot occur in the same `recursive` block scope.
 
+###Collapsing multiple block scopes
+
+If a keyword starting a block scope is immediately followed by another keyword starting a block scope, it is possible to collapse the two block scopes into one:
+
+```
+recursive: fib n:
+  if n < 2:
+    1
+  else:
+    fib (n-1) + fib (n-2)
+```
+
+A single expression can also be collapsed:
+
+```
+if n < 2: true
+else: false
+```
+
+Single line function definitions mentioned previously are one example of this block scope collapsing.
+
+It is not valid to collapse blocks containing multiple sub-blocks at the same level:
+
+```
+match x: Card _ _: true
+  Joker: false  // Not valid
+
+match x: Card _ _: true
+         Joker: false  // Still not valid
+```
+
+Examples such as the above will need to have the sub-blocks appear on their own separate lines.
