@@ -171,3 +171,44 @@ x = match y:
   Joker: Card Heart 13
   _: Card Diamond 1
 ```
+
+###Recursion
+
+Recursive definitions are made using the `recursive` keyword, which creates a new block scope:
+
+```
+recursive:
+  fib n:
+    if n < 2:
+      1
+    else:
+      fib (n-1) + fib (n-2)
+```
+
+Mutually recursive definitions can be made within the same block scope created by the `recursive` keyword:
+
+```
+recursive:
+  odd n:
+    if n == 1:
+      true
+    else:
+      not (even (n-1))
+
+  even n:
+    if n == 2:
+      true
+    else:
+      not (odd (n-1))
+```
+
+Mutually recursive types can also be defined using the `recursive` keyword:
+
+```
+recursive:
+  type exp: Exp statement
+  type statement: Assign string exp
+```
+
+Singly-recursive types do not require the `recursive` keyword, and a function definition and type definition cannot occur in the same `recursive` block scope.
+
