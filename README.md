@@ -127,3 +127,47 @@ type card:
   Card int suit
   Joker
 ```
+
+###Pattern matching
+
+Pattern matching on literals and ADTs can be done using the `match` keyword:
+
+```
+x = match y:
+  true: 1
+  false: 0
+```
+
+The `_` symbol can be used to match anything and throw away the result:
+
+```
+x = match y:
+  Card _ n: n > 10
+  Joker: true
+```
+
+Cases can be qualified with arbitrary boolean expressions using the `when` keyword:
+
+```
+x = match y:
+  Card _ n when n > 10: true
+  Joker: true
+  _: false
+```
+
+Multiple cases that evaluate to the same value can be written in one line using the `|` symbol:
+
+```
+x = match y:
+  Joker | Card _ n when n > 10: true
+  _: false
+```
+
+The `as` keyword can be used to rebind whole or parts of expressions that were destructured as part of the match:
+
+```
+x = match y:
+  Card Heart _ as c: c 
+  Joker: Card Heart 13
+  _: Card Diamond 1
+```
