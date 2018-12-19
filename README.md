@@ -127,6 +127,8 @@ where:
   y = a + b
 ```
 
+Note that this is not possible using `let` - the function parameters are not available as local variables inside the `let` scope.  Therefore the `where` binding is more expressive than the `let` binding.
+
 ### Algebraic Data Types
 
 Algebraic data types can be defined using the `type` keyword:
@@ -220,7 +222,8 @@ recursive:
   type statement: Assign string exp
 ```
 
-Singly-recursive types do not require the `recursive` keyword, and a function definition and type definition cannot occur in the same `recursive` block scope.
+Singly-recursive types do not require the `recursive` keyword.
+A function definition and type definition cannot occur in the same `recursive` block scope.
 
 ### Collapsing multiple block scopes
 
