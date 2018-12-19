@@ -23,9 +23,9 @@ Areas to investigate:
 * Monad/Applicative interface
 * Lazy streams as unifying data structure interface
 
-##Syntax
+## Syntax
 
-###Variables
+### Variables
 
 Variables are defined and bound by the `=` operator:
 
@@ -57,7 +57,7 @@ x := 10 // x = y = ref 10, z = 0
 
 Changes to references will go beyond the current block scope, assuming that the reference itself lives beyond that scope.
 
-###Functions
+### Functions
 
 Functions are defined using the `:` symbol, preceded by the function name and its arguments, with no additional qualifiers.  A simple function can be defined in one line:
 
@@ -94,7 +94,7 @@ f ():
 x = 5 + f () // x = 10
 ```
 
-###let/where
+### let/where
 
 The `let` and `where` keywords create block scopes whose bindings are local to the immediately following/preceding statements:
 
@@ -120,7 +120,7 @@ where:
   y = a + b
 ```
 
-###Algebraic Data Types
+### Algebraic Data Types
 
 Algebraic data types can be defined using the `type` keyword:
 
@@ -131,7 +131,7 @@ type card:
   Joker
 ```
 
-###Pattern matching
+### Pattern matching
 
 Pattern matching on literals and ADTs can be done using the `match` keyword:
 
@@ -175,7 +175,7 @@ x = match y:
   _: Card Diamond 1
 ```
 
-###Recursion
+### Recursion
 
 Recursive definitions are made using the `recursive` keyword, which creates a new block scope:
 
@@ -215,7 +215,7 @@ recursive:
 
 Singly-recursive types do not require the `recursive` keyword, and a function definition and type definition cannot occur in the same `recursive` block scope.
 
-###Collapsing multiple block scopes
+### Collapsing multiple block scopes
 
 If a keyword starting a block scope is immediately followed by another keyword starting a block scope, it is possible to collapse the two block scopes into one:
 
@@ -248,7 +248,7 @@ match x: Card _ _: true
 
 Examples such as the above will need to have the sub-blocks appear on their own separate lines.
 
-###Data structure literals and comprehensions
+### Data structure literals and comprehensions
 
 Lists, arrays, maps and hashtables can be created using literals and comprehensions:
 
@@ -270,7 +270,7 @@ mymap = M{ f x : g x for x in xlist if h x }
 myhtbl = H{ f x : g x for x in xlist if h x }
 ```
 
-###$ syntax
+### $ syntax
 
 The `$` symbol can be used to control the scope of nested function applications.  Tokens appearing to the right of the symbol will be considered as its own expression, to be evaluated first before the whole expression is evaluated:
 
