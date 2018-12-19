@@ -6,6 +6,8 @@ Statically typed impure functional programming language based strongly on OCaml,
 Features:
 
 * Support for functional and imperative programming
+* First class functions
+* First class modules
 * Static Typing
 * Algebraic Data Types and pattern matching
 * Hindley-Milner type inference
@@ -19,6 +21,7 @@ Features:
 
 Areas to investigate:
 
+* Objects
 * Modular implicits
 * Monad/Applicative interface
 * Lazy streams as unifying data structure interface
