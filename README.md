@@ -244,3 +244,25 @@ match x: Card _ _: true
 ```
 
 Examples such as the above will need to have the sub-blocks appear on their own separate lines.
+
+###Data structure literals and comprehensions
+
+Lists, arrays, maps and hashtables can be created using literals and comprehensions:
+
+Literals:
+
+```
+mylist = [1, 2, 3]
+myarray = [| 1, 2, 3 |]
+mymap = M{ 1:1, 2:1, 3:2, 4:3, 5,5 }
+myhtbl = H{ 1:1, 2:1, 3:2, 4:3, 5,5 }
+```
+
+Comprehensions:
+
+```
+mylist = [f x for x in xlist if g x]
+myarray = [| f x for x in xlist if g x |]
+mymap = M{ f x : g x for x in xlist if h x }
+myhtbl = H{ f x : g x for x in xlist if h x }
+```
