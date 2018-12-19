@@ -269,3 +269,19 @@ myarray = [| f x for x in xlist if g x |]
 mymap = M{ f x : g x for x in xlist if h x }
 myhtbl = H{ f x : g x for x in xlist if h x }
 ```
+
+###$ syntax
+
+The `$` symbol can be used to control the scope of nested function applications.  Tokens appearing to the right of the symbol will be considered as its own expression, to be evaluated first before the whole expression is evaluated:
+
+```
+f a b: a * b
+
+f 1 f 2 3 // Syntax error
+
+f 1 (f 2 3) // ok
+
+f 1 $ f 2 3 // equivalent to the above
+```
+
+TBD: Occurrence inside pattern matching and type definitions
