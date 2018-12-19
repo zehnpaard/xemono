@@ -5,14 +5,17 @@ Statically typed impure functional programming language based strongly on OCaml,
 
 Features:
 
-* Hindley-Milner type inference
+* Support for functional and imperative programming
+* Static Typing
 * Algebraic Data Types and pattern matching
+* Hindley-Milner type inference
 * Lexical scoping
 * Variable definitions as name-bindings
 * Mutable ref and array types
 * Significant indentation
 * Literals and comprehensions for common data structures
 * where and let bindings to specify variable scope
+* $ syntax for controlling function application
 
 Areas to investigate:
 
