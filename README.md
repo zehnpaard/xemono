@@ -25,6 +25,10 @@ Areas to investigate:
 
 ## Syntax
 
+### Comments
+
+Comments begin with `//` and continue until the end of the line
+
 ### Variables
 
 Variables are defined and bound by the `=` operator:
