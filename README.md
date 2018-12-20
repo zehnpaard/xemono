@@ -128,6 +128,7 @@ where:
 ```
 
 Note that this is not possible using `let` - the function parameters are not available as local variables inside the `let` scope.  Therefore the `where` binding is more expressive than the `let` binding.
+(Is this syntax really necessary/useful, and does it compose well with other parts of the language?)
 
 ### Algebraic Data Types
 
