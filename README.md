@@ -296,3 +296,40 @@ f 1 $ f 2 3 // equivalent to the above
 ```
 
 TBD: Occurrence inside pattern matching and type definitions
+
+### Modules
+
+```
+module X:
+  structure: // Better name?
+    x = 5
+    y = 10
+
+module type A:
+  signature:
+    type t
+    x :: int
+    y :: int
+    z :: t
+
+module Y:
+  signature:
+    type t
+    x :: int
+    y :: int
+    z :: t
+  structure:
+    type t = MyInt int
+    x = 5
+    y = 10
+    z = MyInt (x + y)
+
+module Z1: Y // Option 1
+module Z1 = Y // Option 2 - this allows module X: ... to omit the structure keyword
+
+module Z2 :: A : X // Option 1
+module Z2 :: A = X // Option 2
+```
+
+Does Option 2 conflict with another way in which modules are used in OCaml?
+
