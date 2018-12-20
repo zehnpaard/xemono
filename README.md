@@ -314,12 +314,12 @@ module type A:
 
 module Y:
   signature:
-    type t
+    type t // abstract type
     x :: int
     y :: int
     z :: t
   structure:
-    type t = MyInt int
+    type t: MyInt int
     x = 5
     y = 10
     z = MyInt (x + y)
@@ -333,3 +333,14 @@ module Z2 :: A = X // Option 2
 
 Does Option 2 conflict with another way in which modules are used in OCaml?
 
+# Functors
+
+```
+module X (Y :: Z):
+  signature:
+    type t: Y.t list
+    empty :: t
+  structure:
+    type t: Y.t list
+    empty = []
+```
