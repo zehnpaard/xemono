@@ -130,6 +130,20 @@ where:
 Note that this is not possible using `let` - the function parameters are not available as local variables inside the `let` scope.  Therefore the `where` binding is more expressive than the `let` binding.
 (Is this syntax really necessary/useful, and does it compose well with other parts of the language?)
 
+### Types
+
+```
+type x: int
+type y: (int, float)
+type z: { index :: int, value :: float }
+
+// Equivalent to
+
+record type z:
+  index :: int
+  value :: float
+```
+
 ### Algebraic Data Types
 
 Algebraic data types can be defined using the `type` keyword:
@@ -296,6 +310,7 @@ f 1 $ f 2 3 // equivalent to the above
 ```
 
 TBD: Occurrence inside pattern matching and type definitions
+
 
 ### Modules
 
