@@ -344,3 +344,10 @@ module X (Y :: Z):
     type t: Y.t list
     empty = []
 ```
+
+# First class modules
+
+```
+x = module M :: S
+f x y (module Z :: S)
+```
