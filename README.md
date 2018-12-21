@@ -6,6 +6,8 @@ Statically typed impure functional programming language based strongly on OCaml,
 Features:
 
 * Support for functional and imperative programming
+* First class functions
+* First class modules
 * Static Typing
 * Algebraic Data Types and pattern matching
 * Hindley-Milner type inference
@@ -19,6 +21,7 @@ Features:
 
 Areas to investigate:
 
+* Objects
 * Modular implicits
 * Monad/Applicative interface
 * Lazy streams as unifying data structure interface
@@ -124,6 +127,23 @@ where:
   y = a + b
 ```
 
+Note that this is not possible using `let` - the function parameters are not available as local variables inside the `let` scope.  Therefore the `where` binding is more expressive than the `let` binding.
+(Is this syntax really necessary/useful, and does it compose well with other parts of the language?)
+
+### Types
+
+```
+type x: int
+type y: (int, float)
+type z: { index :: int, value :: float }
+
+// Equivalent to
+
+record type z:
+  index :: int
+  value :: float
+```
+
 ### Algebraic Data Types
 
 Algebraic data types can be defined using the `type` keyword:
@@ -217,7 +237,8 @@ recursive:
   type statement: Assign string exp
 ```
 
-Singly-recursive types do not require the `recursive` keyword, and a function definition and type definition cannot occur in the same `recursive` block scope.
+Singly-recursive types do not require the `recursive` keyword.
+A function definition and type definition cannot occur in the same `recursive` block scope.
 
 ### Collapsing multiple block scopes
 
@@ -289,3 +310,58 @@ f 1 $ f 2 3 // equivalent to the above
 ```
 
 TBD: Occurrence inside pattern matching and type definitions
+
+
+### Modules
+
+```
+module X:
+  x = 5
+  y = 10
+
+module type A:
+  type t
+  x :: int
+  y :: int
+  z :: t
+
+module Y:
+  signature:
+    type t // abstract type
+    x :: int
+    y :: int
+    z :: t
+
+  type t: MyInt int
+  x = 5
+  y = 10
+  z = MyInt (x + y)
+
+module Z1: Y // Option 1
+module Z1 = Y // Option 2 - this allows module X: ... to omit the structure keyword
+
+module Z2 :: A : X // Option 1
+module Z2 :: A = X // Option 2
+```
+
+Does Option 2 conflict with another way in which modules are used in OCaml?
+
+Is it better to require `structure` if the module also contains `signature`?
+
+# Functors
+
+```
+module X (Y :: Z):
+  signature:
+    type t: Y.t list
+    empty :: t
+  type t: Y.t list
+  empty = []
+```
+
+# First class modules
+
+```
+x = module M :: S
+f x y (module Z :: S)
+```
