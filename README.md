@@ -301,16 +301,14 @@ TBD: Occurrence inside pattern matching and type definitions
 
 ```
 module X:
-  structure: // Better name?
-    x = 5
-    y = 10
+  x = 5
+  y = 10
 
 module type A:
-  signature:
-    type t
-    x :: int
-    y :: int
-    z :: t
+  type t
+  x :: int
+  y :: int
+  z :: t
 
 module Y:
   signature:
@@ -318,11 +316,11 @@ module Y:
     x :: int
     y :: int
     z :: t
-  structure:
-    type t: MyInt int
-    x = 5
-    y = 10
-    z = MyInt (x + y)
+
+  type t: MyInt int
+  x = 5
+  y = 10
+  z = MyInt (x + y)
 
 module Z1: Y // Option 1
 module Z1 = Y // Option 2 - this allows module X: ... to omit the structure keyword
@@ -333,6 +331,8 @@ module Z2 :: A = X // Option 2
 
 Does Option 2 conflict with another way in which modules are used in OCaml?
 
+Is it better to require `structure` if the module also contains `signature`?
+
 # Functors
 
 ```
@@ -340,9 +340,8 @@ module X (Y :: Z):
   signature:
     type t: Y.t list
     empty :: t
-  structure:
-    type t: Y.t list
-    empty = []
+  type t: Y.t list
+  empty = []
 ```
 
 # First class modules
