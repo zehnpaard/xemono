@@ -348,7 +348,7 @@ Does Option 2 conflict with another way in which modules are used in OCaml?
 
 Is it better to require `structure` if the module also contains `signature`?
 
-# Functors
+### Functors
 
 ```
 module X (Y :: Z):
@@ -359,7 +359,7 @@ module X (Y :: Z):
   empty = []
 ```
 
-# First class modules
+### First class modules
 
 ```
 x = module M :: S
