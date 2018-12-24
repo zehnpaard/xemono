@@ -116,6 +116,25 @@ y = cond:
     0
 ```
 
+### for/while
+
+```
+x = ref 0
+for i = 1 to 10:
+  x := !x + i
+
+y = ref 10
+z = ref 0
+while:
+  !y > 0
+do:
+  z <- !y + !z
+```
+
+the for loop is currently in a format compatible with OCaml's version.  A python-like "for x in range ...:" seems more preferable but requires more investigation (particularly performance)
+
+while loop looks inelegant, however the while condition can potentially require multiple lines which rules out the "while condition:" syntax.  Maybe there is a better alternative.
+
 ### let/where
 
 The `let` and `where` keywords create block scopes whose bindings are local to the immediately following/preceding statements:
