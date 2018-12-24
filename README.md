@@ -101,6 +101,21 @@ f ():
 x = 5 + f () // x = 10
 ```
 
+### if/cond
+
+```
+x = if true then 1 else 2
+
+y = cond:
+  x > 5:
+    5
+  x > 1:
+    z = 7
+    z * x
+  else:
+    0
+```
+
 ### let/where
 
 The `let` and `where` keywords create block scopes whose bindings are local to the immediately following/preceding statements:
@@ -206,10 +221,9 @@ Recursive definitions are made using the `recursive` keyword, which creates a ne
 ```
 recursive:
   fib n:
-    if n < 2:
-      1
-    else:
-      fib (n-1) + fib (n-2)
+    cond:
+      n < 2: 1
+      else: fib (n-1) + fib (n-2)
 ```
 
 Mutually recursive definitions can be made within the same block scope created by the `recursive` keyword:
@@ -217,16 +231,14 @@ Mutually recursive definitions can be made within the same block scope created b
 ```
 recursive:
   odd n:
-    if n == 1:
-      true
-    else:
-      not (even (n-1))
+    cond:
+      n == 1: true
+      else: not (even (n-1))
 
   even n:
-    if n == 2:
-      true
-    else:
-      not (odd (n-1))
+    cond:
+      n == 2: true
+      else: not (odd (n-1))
 ```
 
 Mutually recursive types can also be defined using the `recursive` keyword:
@@ -246,17 +258,19 @@ If a keyword starting a block scope is immediately followed by another keyword s
 
 ```
 recursive: fib n:
-  if n < 2:
-    1
-  else:
-    fib (n-1) + fib (n-2)
+  cond:
+    n < 2:
+      1
+    else:
+      fib (n-1) + fib (n-2)
 ```
 
 A single expression can also be collapsed:
 
 ```
-if n < 2: true
-else: false
+cond:
+  n < 2: true
+  else: false
 ```
 
 Single line function definitions mentioned previously are one example of this block scope collapsing.
