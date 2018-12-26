@@ -101,6 +101,22 @@ f ():
 x = 5 + f () // x = 10
 ```
 
+### Function currying
+
+Functions can be curried.  Binding curried functions is done using `=`:
+
+```
+f = (+) 5
+```
+
+Alternatively they can be passed around as arguments/return values:
+
+```
+List.filter ((<) 5) [10, 7, 3, 0, 8]
+
+f x: (+) x
+```
+
 ### Type hints
 
 Type hints can be provided using the `::` symbol:
