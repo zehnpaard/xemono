@@ -101,6 +101,79 @@ f ():
 x = 5 + f () // x = 10
 ```
 
+### Function currying
+
+Functions can be curried.  Binding curried functions is done using `=`:
+
+```
+f = (+) 5
+```
+
+Alternatively they can be passed around as arguments/return values:
+
+```
+List.filter ((<) 5) [10, 7, 3, 0, 8]
+
+f x: (+) x
+```
+
+### Labeled/Optional Parameters
+
+Functions can have labeled parameters, denoted using `~`:
+
+```
+
+f ~x ~y:
+  x + y
+
+f 5 10
+f ~x=5 ~y=10
+f ~y=10 ~x=5
+```
+
+Functions can also have optional parameters, using `?`.  The argument values will be a Option type if no default is specified:
+
+```
+f ?x y:
+  z = match x:
+    None: ""
+    Some x: x
+  z ^ y
+```
+
+Alternatively a default can be specified, in which case the argument value will be a standard type:
+
+```
+f ?x="" y:
+  x ^ y
+```
+
+Optional arguments are called with `~`:
+
+```
+f ~x="#" "abc"
+```
+
+Or if the argument is itself an option type, with a `?`:
+
+```
+f ?x=(Some "#") "abc"
+f ?x=None "abc"
+```
+
+### Type hints
+
+Type hints can be provided using the `::` symbol:
+
+```
+x :: int = 10
+
+f :: int -> int = (+) 5
+
+f (x :: int) :: int:
+  5 + x
+```
+
 ### if/cond
 
 ```
