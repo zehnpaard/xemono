@@ -101,6 +101,19 @@ f ():
 x = 5 + f () // x = 10
 ```
 
+### Type hints
+
+Type hints can be provided using the `::` symbol:
+
+```
+x :: int = 10
+
+f :: int -> int = (+) 5
+
+f (x :: int) :: int:
+  5 + x
+```
+
 ### if/cond
 
 ```
